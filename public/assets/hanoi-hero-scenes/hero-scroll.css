@@ -127,6 +127,8 @@
   padding-inline: var(--page-pad);
 }
 
+.hero-gateway__heading { display: none; }
+
 .hero-selector {
   width: min(100%, 92rem);
   height: 100%;
@@ -311,20 +313,27 @@
 
 @media (max-width: 52rem) {
   .hero-journey { height: 640svh; }
+  .hero-stage { min-height: 34rem; }
   .hero-scene__image { object-position: var(--focus-mobile, var(--focus, 50% 50%)); }
 
   .hero-gateway {
     inset: 4.4rem 0 0;
-    grid-template-rows: minmax(0, 1fr) clamp(9.5rem, 24svh, 12.5rem);
-    gap: clamp(0.75rem, 2vh, 1.15rem);
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 0;
+    padding-bottom: 0;
   }
 
   .hero-gateway__brand {
     padding: max(1rem, env(safe-area-inset-top)) 1rem 0.5rem;
+    display: grid;
+    place-content: center;
+    overflow: visible;
   }
 
-  .hero-wordmark { width: min(94vw, 38rem); }
+  .hero-wordmark {
+    width: min(94vw, 38rem);
+    max-height: none;
+  }
 
   .hero-gateway__tagline {
     width: min(92%, 28rem);
@@ -334,11 +343,51 @@
     line-height: 1.05;
   }
 
-  .hero-gateway__shows { padding-inline: 0; }
+  .hero-gateway__shows { padding: 0 0 max(0.75rem, env(safe-area-inset-bottom)); }
+
+  .hero-gateway__heading {
+    width: calc(100% - 2rem);
+    margin: 0 auto 0.65rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .hero-gateway__heading > span {
+    height: 1px;
+    background: rgba(212, 175, 55, 0.84);
+    box-shadow: 0 0 0.7rem rgba(212, 175, 55, 0.54);
+  }
+
+  .hero-gateway__heading strong,
+  .hero-gateway__heading small {
+    display: block;
+    font-family: Teko, 'Roboto Condensed', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .hero-gateway__heading strong {
+    color: #e4b83b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 0.82;
+    white-space: nowrap;
+  }
+
+  .hero-gateway__heading small {
+    margin-top: 0.35rem;
+    color: #d4af37;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+  }
 
   .hero-selector {
     width: 100%;
-    height: 100%;
+    height: clamp(9.5rem, 24svh, 12.5rem);
     padding: 0 1rem 0.45rem;
     display: flex;
     gap: 0.65rem;

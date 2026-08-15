@@ -22,8 +22,7 @@ app.get('/health', (_req, res) => {
 
 app.use(express.static(publicDir, {
   index: false,
-  maxAge: '7d',
-  immutable: true,
+  maxAge: '1h',
   setHeaders(res, filePath) {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store');
